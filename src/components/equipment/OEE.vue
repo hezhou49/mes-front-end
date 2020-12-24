@@ -3,23 +3,20 @@
         <el-form :inline="true" :model="formInline" class="demo-form-inline">
             <el-form-item label="选择产线" class="form-label">
                 <el-select v-model="formInline.line" placeholder="选择产线" :clearable="true">
-                    <el-option label="门板线" value="门板线"></el-option>
-                    <el-option label="产线1" value="产线1"></el-option>
+                    <el-option label="轿壁线" value="轿壁线"></el-option>
                 </el-select>
             </el-form-item>
             <el-form-item label="设备名称" class="form-label">
                 <el-select v-model="formInline.name" placeholder="设备名称" :clearable="true">
-                    <el-option label="ROB1" value="ROB1"></el-option>
-                    <el-option label="取料机器人" value="取料机器人"></el-option>
-                    <el-option label="激光裁剪机" value="激光裁剪机"></el-option>
-                    <el-option label="前压窝机器人" value="前压窝机器人"></el-option>
-                    <el-option label="后压窝机器人" value="后压窝机器人"></el-option>
-                    <el-option label="前压窝冲床" value="前压窝冲床"></el-option>
-                    <el-option label="后压窝冲床" value="后压窝冲床"></el-option>
-                    <el-option label="折弯机" value="折弯机"></el-option>
-                    <el-option label="翻边点焊机器人" value="翻边点焊机器人"></el-option>
-                    <el-option label="堆垛机器人" value="堆垛机器人"></el-option>
-                    <el-option label="点焊机" value="点焊机"></el-option>
+                    <el-option label="加强筋机器人" value="加强筋机器人"></el-option>
+                    <el-option label="组装机器人" value="组装机器人"></el-option>
+                    <el-option label="外包板机器人" value="外包板机器人"></el-option>
+                    <el-option label="打胶机器人" value="打胶机器人"></el-option>
+                    <el-option label="翻边机" value="翻边机"></el-option>
+                    <el-option label="冲床" value="冲床"></el-option>
+                    <el-option label="加强筋折弯机" value="加强筋折弯机"></el-option>
+                    <el-option label="外包板折弯机" value="外包板折弯机"></el-option>
+                    <el-option label="打胶机" value="打胶机"></el-option>
                 </el-select>
             </el-form-item>
             <el-form-item label="选择时间" class="form-label">
@@ -118,7 +115,7 @@
                  echarts.registerTheme('chalk', obj);
                 let myChart = echarts.init( document.getElementById("xingneng"),'chalk');
                 let value = xingneng
-                let data = [value, value, value, value, value ];
+                let data = [value, value/1.2, value/1.4, value/1.6 ];
                 let option = {
                     backgroundColor: '#2556B5',
                     title: {
@@ -163,7 +160,7 @@
                  echarts.registerTheme('chalk', obj);
                 let myChart = echarts.init( document.getElementById("hege"),'chalk');
                 let value = hege
-                let data = [value, value, value, value, value ];
+                let data = [value, value/1.2, value/1.4, value/1.6 ];
                 let option = {
                     backgroundColor: '#2556B5',
                     title: {
@@ -214,16 +211,15 @@
                  let data6=[];let data7=[];let data8=[];let data9=[];let data10=[];
                  let data_time=[];
                  for (let i=0;i<list.length;i++){
-                     if (list[i].name==="取料机器人"){data1.push(list[i].alloee)}
-                     else if(list[i].name==="激光裁剪机"){data2.push(list[i].alloee)}
-                     else if(list[i].name==="前压窝机器人"){data3.push(list[i].alloee)}
-                     else if(list[i].name==="后压窝机器人"){data4.push(list[i].alloee)}
-                     else if(list[i].name==="前压窝冲床"){data5.push(list[i].alloee)}
-                     else if(list[i].name==="后压窝冲床"){data6.push(list[i].alloee)}
-                     else if(list[i].name==="折弯机"){data7.push(list[i].alloee)}
-                     else if(list[i].name==="翻边机器人"){data8.push(list[i].alloee)}
-                     else if(list[i].name==="堆垛机器人"){data9.push(list[i].alloee)}
-                     else if(list[i].name==="点焊机"){data10.push(list[i].alloee)}
+                     if (list[i].name==="加强筋机器人"){data1.push(list[i].alloee)}
+                     else if(list[i].name==="组装机器人"){data2.push(list[i].alloee)}
+                     else if(list[i].name==="外包板机器人"){data3.push(list[i].alloee)}
+                     else if(list[i].name==="打胶机器人"){data4.push(list[i].alloee)}
+                     else if(list[i].name==="加强筋折弯机"){data5.push(list[i].alloee)}
+                     else if(list[i].name==="打胶机"){data6.push(list[i].alloee)}
+                     else if(list[i].name==="翻边机"){data7.push(list[i].alloee)}
+                     else if(list[i].name==="外包板折弯机"){data8.push(list[i].alloee)}
+                     else if(list[i].name==="冲床"){data9.push(list[i].alloee)}
                      else {}
                      //横轴时间
                      if(!data_time.includes(list[i].date)){data_time.push(list[i].date)}
@@ -345,7 +341,7 @@
                         x: 'left',
                         y:'bottom',
                         padding: 20,
-                        data: ['取料机器人', '激光裁剪机', '前压窝机器人','后压窝机器人','前压窝冲床','后压窝冲床','折弯机','翻边机器人','堆垛机器人','点焊机']
+                        data: ['加强筋机器人', '组装机器人', '外包板机器人','打胶机器人','加强筋折弯机','打胶机','翻边机','外包板折弯机','冲床']
                     },
                     toolbox: {
                         show: true,
@@ -381,7 +377,7 @@
                     ],
                     series: [
                         {
-                            name: '取料机器人',
+                            name: '加强筋机器人',
                             type: 'bar',
                             barGap:0,
                             label: {
@@ -412,7 +408,7 @@
                             data: data1
                         },
                         {
-                            name: '激光裁剪机',
+                            name: '组装机器人',
                             type: 'bar',
                             label: {
                                 //labelOption,
@@ -443,7 +439,7 @@
                         },
         
                         {
-                            name: '前压窝机器人',
+                            name: '外包板机器人',
                             type: 'bar',
                             label: {
                                 //labelOption,
@@ -474,7 +470,7 @@
                             data: data3
                         },
                         {
-                            name: '后压窝机器人',
+                            name: '打胶机器人',
                             type: 'bar',
                             label: {
                                 //labelOption,
@@ -505,7 +501,7 @@
                             data: data4
                         },
                         {
-                            name: '前压窝冲床',
+                            name: '加强筋折弯机',
                             type: 'bar',
                             label: {
                                 //labelOption,
@@ -536,7 +532,7 @@
                             data: data5
                         },
                         {
-                            name: '后压窝冲床',
+                            name: '打胶机',
                             type: 'bar',
                             label: {
                                 //labelOption,
@@ -567,7 +563,7 @@
                             data: data6
                         },
                         {
-                            name: '折弯机',
+                            name: '翻边机',
                             type: 'bar',
                             label: {
                                 normal:{
@@ -588,7 +584,7 @@
                             data: data7
                         },
                         {
-                            name: '翻边机器人',
+                            name: '外包板折弯机',
                             type: 'bar',
                             label: {
                                 normal:{
@@ -608,7 +604,7 @@
                             data: data8
                         },
                         {
-                            name: '堆垛机器人',
+                            name: '冲床',
                             type: 'bar',
                             label: {
                                 normal:{
@@ -627,26 +623,7 @@
                             },
                             data: data9
                         },
-                        {
-                            name: '点焊机',
-                            type: 'bar',
-                            label: {
-                                normal:{
-                                    show:true,
-                                    formatter : function(c){
-                                        let a=c.value*100;
-                                        return a.toFixed(1)+"%";},
-                                    rotate: app.config.rotate,
-                                    fontSize: 15,
-                                    rich: {
-                                        name: {
-                                            textBorderColor: '#fff'
-                                        }
-                                    }
-                                },
-                            },
-                            data: data10
-                        },
+
                     ]
                 };
                 if (option && typeof option === "object") {

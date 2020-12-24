@@ -5,8 +5,7 @@
             <div>
                 <el-form-item label="选择产线" class="form-label" style="margin-right: 200px">
                     <el-select v-model="formInline.lineName" placeholder="选择产线" :clearable="true">
-                        <el-option label="门板线" value="门板线"></el-option>
-                        <el-option label="产线2" value="产线2"></el-option>
+                        <el-option label="轿壁线" value="轿壁线"></el-option>
                     </el-select>
                 </el-form-item>
                 <el-form-item label="选择时间" class="form-label">

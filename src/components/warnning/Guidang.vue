@@ -3,22 +3,20 @@
         <el-form :inline="true" :model="formInline" class="demo-form-inline">
             <el-form-item label="选择产线" class="form-label">
                 <el-select v-model="formInline.lineName" placeholder="选择产线" :clearable="true">
-                    <el-option label="门板线" value="门板线"></el-option>
-                    <el-option label="产线2" value="产线2"></el-option>
+                    <el-option label="轿壁线" value="轿壁线"></el-option>
                 </el-select>
             </el-form-item>
             <el-form-item label="设备名称" class="form-label">
                 <el-select v-model="formInline.equipmentName" placeholder="设备名称" :clearable="true">
-                    <el-option label="取料机器人" value="取料机器人"></el-option>
-                    <el-option label="激光裁剪机" value="激光裁剪机"></el-option>
-                    <el-option label="前压窝机器人" value="前压窝机器人"></el-option>
-                    <el-option label="后压窝机器人" value="后压窝机器人"></el-option>
-                    <el-option label="前压窝冲床" value="前压窝冲床"></el-option>
-                    <el-option label="后压窝冲床" value="后压窝冲床"></el-option>
-                    <el-option label="折弯机" value="折弯机"></el-option>
-                    <el-option label="翻边点焊机器人" value="翻边点焊机器人"></el-option>
-                    <el-option label="堆垛机器人" value="堆垛机器人"></el-option>
-                    <el-option label="点焊机" value="点焊机"></el-option>
+                    <el-option label="加强筋机器人" value="加强筋机器人"></el-option>
+                    <el-option label="组装机器人" value="组装机器人"></el-option>
+                    <el-option label="外包板机器人" value="外包板机器人"></el-option>
+                    <el-option label="打胶机器人" value="打胶机器人"></el-option>
+                    <el-option label="加强筋折弯机" value="加强筋折弯机"></el-option>
+                    <el-option label="打胶机" value="打胶机"></el-option>
+                    <el-option label="翻边机" value="翻边机"></el-option>
+                    <el-option label="外包板折弯机" value="外包板折弯机"></el-option>
+                    <el-option label="冲床" value="冲床"></el-option>
                 </el-select>
             </el-form-item>
             <el-form-item label="报警时间" class="form-label">
