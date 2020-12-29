@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img src="../assets/image/sunwanew.png" style="margin-top: 300px;"/>
+        <img src="../assets/images/sunwanew.png" style="margin-top: 300px;"/>
         <div class="container">
             <el-form >
                 <el-form-item>

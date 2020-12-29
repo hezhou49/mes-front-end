@@ -3,7 +3,7 @@
         <el-container  style="height: 100%">
             <el-header class="homeHeader">
                 <!--<div class ="headerText">升华电梯</div>-->
-                <img src="../assets/image/sunwanew.png" style="height: 30px;margin-top: 15px;margin-bottom: 15px;"/>
+                <img src="../assets/images/sunwanew.png" style="height: 30px;margin-top: 15px;margin-bottom: 15px;"/>
                 <el-dropdown  @command="handleCommand">
                       <span class="el-dropdown-link"><i class="el-icon-user-solid"></i>
                         {{user.username}}<i class="el-icon-arrow-down el-icon--right"></i>
