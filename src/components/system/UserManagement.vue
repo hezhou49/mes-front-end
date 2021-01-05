@@ -22,6 +22,7 @@
                 </div>
             </el-form-item>
             <el-form-item>
+                <el-button type="warning" @click="onCreate">添加</el-button>
                 <el-button type="primary" @click="onSubmit">查询</el-button>
                 <el-button type="primary" @click="listAll">刷新</el-button>
             </el-form-item>
@@ -57,7 +58,33 @@
                 layout="total, sizes, prev, pager, next, jumper"
                 :total="total">
         </el-pagination>
-        <el-dialog title="用户管理" :visible.sync="dialogFormVisible_1" width="30%">
+        <el-dialog title="添加用户" :visible.sync="dialogFormVisible_3" width="30%">
+            <el-form :model="dialogForm" >
+                <el-form-item label="用户名" :label-width="formLabelWidth">
+                    <el-input v-model="dialogForm.userName"  ></el-input>
+                </el-form-item>
+                <el-form-item label="密码" :label-width="formLabelWidth">
+                    <el-input v-model="dialogForm.password"  ></el-input>
+                </el-form-item>
+                <el-form-item label="姓名" :label-width="formLabelWidth">
+                    <el-input v-model="dialogForm.fullName"  ></el-input>
+                </el-form-item>
+                <el-form-item label="部门" :label-width="formLabelWidth">
+                    <el-input v-model="dialogForm.department" ></el-input>
+                </el-form-item>
+                <el-form-item label="手机号" :label-width="formLabelWidth">
+                    <el-input v-model="dialogForm.phone" ></el-input>
+                </el-form-item>
+                <el-form-item label="角色" :label-width="formLabelWidth">
+                    <el-input v-model="dialogForm.role" ></el-input>
+                </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="dialogFormVisible_3 = false">取 消</el-button>
+                <el-button type="primary" @click="handleCreateConfirm">确 定</el-button>
+            </div>
+        </el-dialog>
+        <el-dialog title="编辑用户" :visible.sync="dialogFormVisible_1" width="30%">
             <el-form :model="dialogForm" >
                 <el-form-item label="用户名" :label-width="formLabelWidth">
                     <el-input v-model="dialogForm.userName"  ></el-input>
@@ -114,6 +141,7 @@
                 //dialog
                 dialogFormVisible_1: false,
                 dialogFormVisible_2: false,
+                dialogFormVisible_3: false,
                 dialogForm: {
                     // 与employee参数一致
                     id:'',
@@ -173,6 +201,24 @@
             },
             handleCurrentChange(val) {
                 this.currentPage = val;
+            },
+            // 处理点击添加按钮
+            onCreate(){
+                this.dialogForm.id='';
+                this.dialogForm.userName='';
+                this.dialogForm.password='';
+                this.dialogForm.fullName='';
+                this.dialogForm.department='';
+                this.dialogForm.phone='';
+                this.dialogForm.role='';
+                this.dialogFormVisible_3 = true
+            },
+            // 确认添加
+            handleCreateConfirm(){
+                postKeyValueRequst('/employee/save',{'employeeStr':JSON.stringify(this.dialogForm)}).then(resp=>{
+                    this.listAll()
+                });
+                this.dialogFormVisible_3 = false
             },
             // 处理点击编辑、删除按钮
             handleEdit(index,row){

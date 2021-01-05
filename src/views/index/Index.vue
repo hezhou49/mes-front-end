@@ -1,8 +1,9 @@
 <template>
     <div class="middle" :style="backgroundDiv">
         <h2 style="color: #FFF94B;margin-top: 10px;position: absolute">生产过程可视化</h2>
-        <!--<p style="color: #2556B5;font-size:30px;position: absolute;top:430px;left: 120px">{{banjian_num.left}}/{{banjian_num.all}}</p>-->
-        <!--<p style="color: #2556B5;font-size:30px;position: absolute;top:400px;right: 230px">{{banjian_num.finish}}</p>-->
+        <p style="color: #2556B5;font-size:30px;position: absolute;top:365px;left: 120px">{{banjian_num.left}}/{{banjian_num.all}}</p>
+        <p style="color: #2556B5;font-size:30px;position: absolute;top:600px;left: 330px">{{banjian_num.finish}}</p>
+        <p style="color: #2556B5;font-size:30px;position: absolute;top:650px;right: 590px">{{jin_num.left}}/{{jin_num.all}}</p>
         <!--冲床上的外包板-->
         <img src="../../assets/images/banjian_chongchuang.png" alt="板件" v-if="banjian.chongchuang" class="image_rotate" style="width: 456px;position: absolute;top:287px;right: 363px">
         <!--加强筋放料-->
@@ -47,7 +48,7 @@
                     </el-table>
                 </div>
 
-                <img src="../../assets/images/warn.png" v-if="isWarning.zhewanji2"  alt="报警" slot="reference" style="left: 1070px;top: 180px;position: absolute">
+                <img src="../../assets/images/warn.png" v-if="isWarning.zhewanji2 || isWarning.zhewanji2_moju"  alt="报警" slot="reference" style="left: 1070px;top: 180px;position: absolute">
                 <img src="../../assets/images/normal.png" v-else alt="normal" slot="reference" style="left: 1070px;top: 180px;position: absolute">
             </el-popover>
             <!--冲床-->
@@ -104,6 +105,7 @@
                 <img src="../../assets/images/warn.png" v-if="isWarning.fanbianji||isWarning.fanbianji_moju"  alt="报警" slot="reference" style="left: 830px;top: 280px;position: absolute">
                 <img src="../../assets/images/normal.png" v-else alt="normal" slot="reference" style="left: 830px;top: 280px;position: absolute">
             </el-popover>
+            <!--加强折弯机-->
             <el-popover
                     placement="top-start"
                     title="设备信息"
@@ -118,7 +120,7 @@
                         <el-table-column width="100" property="second" ></el-table-column>
                     </el-table>
                 </div>
-                <img src="../../assets/images/warn.png" v-if="isWarning.zhewanji1"  alt="报警" slot="reference" style="left: 350px;top: 170px;position: absolute">
+                <img src="../../assets/images/warn.png" v-if="isWarning.zhewanji1 || isWarning.zhewanji1_moju"  alt="报警" slot="reference" style="left: 350px;top: 170px;position: absolute">
                 <img src="../../assets/images/normal.png" v-else alt="normal" slot="reference" style="left: 350px;top: 170px;position: absolute">
             </el-popover>
             <el-popover
@@ -195,6 +197,12 @@
             return{
                 // 板件数量
                 banjian_num:{
+                    left:100,
+                    all:300,
+                    finish:300,
+                },
+                // 筋数量
+                jin_num:{
                     left:0,
                     all:0,
                     finish:0,
@@ -321,7 +329,7 @@
                     chongchuang:[
                         {
                             first: '设备名称',
-                            second:'800翻边机'
+                            second:'冲床'
                         },
                         {
                             first: '设备型号',
@@ -454,6 +462,10 @@
                 else if (tag==='banjian_num'){
                     that.banjian_num[equipname]=val;
                 }
+                // 筋数量
+                else if (tag==='jin_num'){
+                    that.jin_num[equipname]=val;
+                }
             },
             // MQTT注册函数
             mqttMSG () {
@@ -462,7 +474,8 @@
                 client.on('connect', (e) => {
                     globalData.isConnected=true;
                     console.log('连接成功:');
-                    client.subscribe(["line2/robot1/state","line2/robot1/position",
+                    client.subscribe(["line2/all/switch",
+                                    "line2/robot1/state","line2/robot1/position",
                                     "line2/robot2/state","line2/robot2/position",
                                     "line2/robot3/state","line2/robot3/position",
                                     "line2/robot4/state","line2/robot4/position",
@@ -472,7 +485,7 @@
                                     "line2/zhewanji1_moju/state","line2/zhewanji2_moju/state",
                                     "line2/fanbianji_moju/state","line2/chongchuang_moju/state",
                                     "line2/maduo_manliao/state", "line2/queliao/state",
-                                    "line2/all/switch","line2/zhewanji1_set/moju_num",
+                                    "line2/zhewanji1_set/moju_num",
                                     "line2/zhewanji1_use/moju_num","line2/zhewanji2_set/moju_num",
                                     "line2/zhewanji2_use/moju_num","line2/fanbianji_set/moju_num",
                                     "line2/fanbianji_use/moju_num","line2/chongchuang_use/moju_num",
