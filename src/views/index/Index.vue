@@ -4,8 +4,12 @@
         <p style="color: #2556B5;font-size:30px;position: absolute;top:365px;left: 120px">{{banjian_num.left}}/{{banjian_num.all}}</p>
         <p style="color: #2556B5;font-size:30px;position: absolute;top:600px;left: 330px">{{banjian_num.finish}}</p>
         <p style="color: #2556B5;font-size:30px;position: absolute;top:650px;right: 590px">{{jin_num.left}}/{{jin_num.all}}</p>
-        <!--冲床上的外包板-->
+        <!--冲床上的外包板 1670/2331-->
         <img src="../../assets/images/banjian_chongchuang.png" alt="板件" v-if="banjian.chongchuang" class="image_rotate" style="width: 456px;position: absolute;top:287px;right: 363px">
+        <!--打胶机边的外包板-->
+        <img src="../../assets/images/banjian_dajiao.png" alt="板件" v-if="banjian.dajiaoji" class="image_rotate" style="width: 424px;position: absolute;top:375px;left: 465px">
+        <!--打胶机边的外包板-->
+        <img src="../../assets/images/banjian_zuzhuang.png" v-if="banjian.zuzhuang" alt="板件"  class="image_rotate" style="width: 424px;position: absolute;top:375px;left: 465px">
         <!--加强筋放料-->
         <img src="../../assets/images/zhiliaojia.png" alt="板件" v-if="banjian.zhiliaojia" class="image_rotate" style="width: 456px;position: absolute;top:295px;left: 210px">
         <!--机器人图片-->
@@ -223,6 +227,8 @@
                 // 几个位置板件是否显示
                 banjian:{
                     chongchuang:false,
+                    dajiaoji:false,
+                    zuzhuang:false,
                     zhiliaojia:false
                 },
                 // 各机器位置
@@ -422,7 +428,19 @@
                         console.log(equipname,this.position[equipname])
                         if (val === 4) {
                             //加强筋图片消失
-                            that.banjian.zhiliaojia=false
+                            that.banjian.zhiliaojia=false;
+                            // 打胶机下显示板件
+                            that.banjian.dajiaoji=true
+                        }
+                        if (val === 5) {
+                            // 打胶机下取消显示板件
+                            that.banjian.dajiaoji=false;
+
+                            that.banjian.zuzhuang=true
+
+                        }
+                        if (val === 7) {
+                            that.banjian.zuzhuang=false
                         }
                     }
                     if(equipname==='robot3'){
