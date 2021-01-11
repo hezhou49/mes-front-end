@@ -197,9 +197,9 @@
             return{
                 // 板件数量
                 banjian_num:{
-                    left:100,
-                    all:300,
-                    finish:300,
+                    left:0,
+                    all:0,
+                    finish:0,
                 },
                 // 筋数量
                 jin_num:{

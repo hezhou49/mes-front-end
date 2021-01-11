@@ -1,10 +1,11 @@
 <template>
     <div>
         <el-form :inline="true" :model="formInline" class="demo-form-inline">
-            <el-form-item label="选择部门" class="form-label">
-                <el-select v-model="formInline.department" placeholder="选择部门" :clearable="true">
-                    <el-option label="工程部" value="工程部"></el-option>
-                </el-select>
+            <el-form-item label="部门" class="form-label">
+                <!--<el-select v-model="formInline.department" placeholder="选择部门" :clearable="true">-->
+                    <!--<el-option label="工程部" value="工程部"></el-option>-->
+                <!--</el-select>-->
+                <el-input v-model="formInline.department" placeholder="部门"></el-input>
             </el-form-item>
             <el-form-item label="选择角色" class="form-label">
                 <el-select v-model="formInline.role" placeholder="选择角色" :clearable="true">
